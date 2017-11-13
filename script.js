@@ -25,11 +25,11 @@ function Employee(firstName, lastName, employeeID, jobTitle, annualSalary) {
 
 function submitNewEmployee() {
     console.log('in new employee')
-
     if($('#annualSalaryInput').val() == ''){
         alert('Please complete Annual Salary field');
         return;
     } //error handling for blank salary
+
     var newEmployee = new Employee();
 
     if(isNaN(newEmployee.annualSalary)){
