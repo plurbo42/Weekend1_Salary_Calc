@@ -1,8 +1,5 @@
-
-/*
-to do:
-- Make beautiful
-*/
+//TO DO:
+// Add 'remove' button to each ee, instead of just removing last ee
 
 console.log('js sourced');
 
@@ -49,16 +46,8 @@ function submitNewEmployee() {
         '<td class="annualSalary">$' + newEmployee.annualSalary + '</td>' +
         '</tr>')
     //row added
-
-    var yearlyCost = 0;
-    for (var i = 0; i < employeeArray.length; i++) {
-        var currentEmployee = employeeArray[i];
-        yearlyCost = yearlyCost + employeeArray[i].annualSalary;
-    }
-    var monthlyCost = (yearlyCost / 12).toFixed(2);
-    console.log(yearlyCost + ' is the yearly cost ' + monthlyCost + ' is the monthly cost')
-    $('#calculations').replaceWith('<p id="calculations">Total monthly gross wages: $' + monthlyCost + '</p>')
-    //cost calculated
+    
+    calculateCosts (employeeArray);
 
     $('#firstNameInput').val('');
     $('#lastNameInput').val('');
@@ -71,15 +60,16 @@ function submitNewEmployee() {
 function removeEmployee() {
     $('tr').last().remove();
     employeeArray.pop();
+    calculateCosts(employeeArray);
+}
+
+function calculateCosts(){
     var yearlyCost = 0;
     for (var i = 0; i < employeeArray.length; i++) {
         var currentEmployee = employeeArray[i];
         yearlyCost = yearlyCost + employeeArray[i].annualSalary;
     }
-    var monthlyCost = ((yearlyCost / 12).toFixed(2));
+    var monthlyCost = (yearlyCost / 12).toFixed(2);
     console.log(yearlyCost + ' is the yearly cost ' + monthlyCost + ' is the monthly cost')
     $('#calculations').replaceWith('<p id="calculations">Total monthly gross wages: $' + monthlyCost + '</p>')
 }
-
-
-
