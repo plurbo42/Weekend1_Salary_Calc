@@ -21,7 +21,7 @@ function Employee(firstName, lastName, employeeID, jobTitle, annualSalary) {
     this.lastName = $('#lastNameInput').val();
     this.employeeID = $('#employeeIDInput').val();
     this.jobTitle = $('#jobTitleInput').val();
-    this.annualSalary = $('#annualSalaryInput').val().replace(/,|\$/g, ''); //replace to account for non-numeric money input
+    this.annualSalary = Number($('#annualSalaryInput').val().replace(/,|\$/g, '')); //replace to account for non-numeric money input
 }
 
 function submitNewEmployee() {
@@ -48,7 +48,7 @@ function submitNewEmployee() {
     var yearlyCost = 0;
     for (var i = 0; i < employeeArray.length; i++) {
         var currentEmployee = employeeArray[i];
-        yearlyCost = Number(yearlyCost + Number(employeeArray[i].annualSalary));
+        yearlyCost = yearlyCost + employeeArray[i].annualSalary;
     }
     var monthlyCost = (yearlyCost / 12).toFixed(2);
     console.log(yearlyCost + ' is the yearly cost ' + monthlyCost + ' is the monthly cost')
@@ -69,7 +69,7 @@ function removeEmployee() {
     var yearlyCost = 0;
     for (var i = 0; i < employeeArray.length; i++) {
         var currentEmployee = employeeArray[i];
-        yearlyCost = Number(yearlyCost + Number(employeeArray[i].annualSalary));
+        yearlyCost = yearlyCost + employeeArray[i].annualSalary;
     }
     var monthlyCost = ((yearlyCost / 12).toFixed(2));
     console.log(yearlyCost + ' is the yearly cost ' + monthlyCost + ' is the monthly cost')
