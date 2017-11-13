@@ -21,17 +21,16 @@ function Employee(firstName, lastName, employeeID, jobTitle, annualSalary) {
     this.lastName = $('#lastNameInput').val();
     this.employeeID = $('#employeeIDInput').val();
     this.jobTitle = $('#jobTitleInput').val();
-    this.annualSalary = $('#annualSalaryInput').val();
+    this.annualSalary = $('#annualSalaryInput').val().replace(/,|\$/g, ''); //replace to account for non-numeric money input
 }
 
 function submitNewEmployee() {
     console.log('in new employee')
 
-    // if($('#inputlist').val() == ''){
-    //     alert('Please complete all fields');
-    //     return;
-    // }
-    //this doesnt work, it still fires if the fields are all complete. Likely, can resolve by checking each field individually but prefer to avoid this
+    if($('#annualSalaryInput').val() == ''){
+        alert('Please complete Annual Salary field');
+        return;
+    }
 
     var newEmployee = new Employee();
     employeeArray.push(newEmployee);
@@ -42,7 +41,7 @@ function submitNewEmployee() {
         '<td class="lastName">' + newEmployee.lastName + '</td>' +
         '<td class="employeeID">' + newEmployee.employeeID + '</td>' +
         '<td class="jobTitle">' + newEmployee.jobTitle + '</td>' +
-        '<td class="annualSalary">' + newEmployee.annualSalary + '</td>' +
+        '<td class="annualSalary">$' + newEmployee.annualSalary + '</td>' +
         '</tr>')
     //row added
 
