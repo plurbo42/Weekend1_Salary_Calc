@@ -29,9 +29,15 @@ function submitNewEmployee() {
     if($('#annualSalaryInput').val() == ''){
         alert('Please complete Annual Salary field');
         return;
-    }
-
+    } //error handling for blank salary
     var newEmployee = new Employee();
+
+    if(isNaN(newEmployee.annualSalary)){
+        alert('Please enter numeric value for Annual Salary')
+        $('#annualSalaryInput').val('');
+        return;
+    } //error handling for non-numeric salary
+
     employeeArray.push(newEmployee);
     console.log(employeeArray);
     $('#employeeTable').append(
@@ -51,7 +57,7 @@ function submitNewEmployee() {
     }
     var monthlyCost = (yearlyCost / 12).toFixed(2);
     console.log(yearlyCost + ' is the yearly cost ' + monthlyCost + ' is the monthly cost')
-    $('#calculations').replaceWith('<p id="calculations">The total monthly gross wages for these employees is $' + monthlyCost + '</p>')
+    $('#calculations').replaceWith('<p id="calculations">Total monthly gross wages: $' + monthlyCost + '</p>')
     //cost calculated
 
     $('#firstNameInput').val('');
@@ -72,7 +78,7 @@ function removeEmployee() {
     }
     var monthlyCost = ((yearlyCost / 12).toFixed(2));
     console.log(yearlyCost + ' is the yearly cost ' + monthlyCost + ' is the monthly cost')
-    $('#calculations').replaceWith('<p id="calculations">The total monthly gross wages for these employees is $' + monthlyCost + '</p>')
+    $('#calculations').replaceWith('<p id="calculations">Total monthly gross wages: $' + monthlyCost + '</p>')
 }
 
 
