@@ -2,7 +2,6 @@
 /*
 to do:
 - Make beautiful
--Figure out blank input error handling
 */
 
 console.log('js sourced');
